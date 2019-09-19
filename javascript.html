@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trial using Javascript to change CSS on elements</title>
+</head>
+    <script>
+        function bs1192_css(){
+            document.getElementById('Element1').style.cssText = 'background-color:#00008B; color:white;';
+			document.getElementById('Element3').style.cssText = 'background-color:#00008B; color:white;';
+        }
+		function iso19650_css(){
+            document.getElementById('Element2').style.cssText = 'background-color:#DC143C; color:white;';
+			document.getElementById('Element4').style.cssText = 'background-color:#DC143C; color:white;';
+        }
+		function reset_css(){
+			document.getElementById('Element1').style.cssText = 'all:none';
+			document.getElementById('Element2').style.cssText = 'all:none';
+			document.getElementById('Element3').style.cssText = 'all:none';
+			document.getElementById('Element4').style.cssText = 'all:none';
+		}
+		function current_css(){
+			document.getElementById('Element2').style.cssText = 'background-color:#006400; color:white;';
+			document.getElementById('Element1').style.cssText = 'background-color:#696969; color:#A9A9A9;';
+			document.getElementById('Element4').style.cssText = 'background-color:#006400; color:white;';
+			document.getElementById('Element3').style.cssText = 'background-color:#696969; color:#A9A9A9;';
+		}
+    </script>
+
+</head>
+
+<body>
+    <center>
+        <div id="error"></div>
+        <center>
+            <div id="Element1"><h2>This is a BS 1192 element</h2></div>
+			<div id="Element2"><h2>This is an ISO 19650 element</h2></div>
+            <div id="Element3"><h2>This is another BS 1192 element</h2></div>
+			<div id="Element4"><h2>This is another ISO 19650 element</h2></div>
+			<button onclick="bs1192_css();">Show BS 1192 Items</button><br />
+			<button onclick="iso19650_css();">Show ISO 19650 Items</button><br />
+			<button onclick="current_css();">Show Current Items</button><br />
+			<button onclick="reset_css();">Reset</button><br />
+        </center>
+    </center>
+</body>
+</body>
+</html>
