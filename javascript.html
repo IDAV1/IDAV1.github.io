@@ -26,6 +26,9 @@
 		}
     </script>
 
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="./lib/flowcharty.js"></script>
+
 </head>
 
 <body>
@@ -42,6 +45,101 @@
 			<button onclick="reset_css();">Reset</button><br />
         </center>
     </center>
+<br>
+<br>
+<svg width="960" height="720"></svg>
+var data = {
+    nodes: [
+      {id: 'start', label: {name: 'Which flowchart library should you use?'}, style: {fillColor: '#fff'}},
+      {id: 'manually', label: {name: 'You want to draw manually?'}},
+      {id: 'drawIo', label: {name: '<a href="https://www.draw.io/" target="_blank">draw.io</a>', dx: 0, dy: 0, textAnchor: 'middle'}, style: {shape: "rect", width: 100, height: 25, rx: 3, ry: 3, fillColor: 'rgb(241, 136, 8)', strokeColor: 'rgb(199, 113, 7)'}},
+      {id: 'formal', label: {name: 'You want to draw a relatively formal chart?'}},
+      {id: 'anotherChart', label: {name: 'You want to use \nnot only for flowchart \nbut also another UML?'}},
+      {id: 'mermaid', label: {name: '<a href="https://mermaidjs.github.io/" target="_blank">mermaid</a>', dx: 0, dy: 0, textAnchor: 'middle'}, style: {shape: "rect", width: 100, height: 25, rx: 3, ry: 3, fillColor: '#8dcf7c', strokeColor: '#72a964'}},
+      {id: 'flowchartJS', label: {name: '<a href="http://flowchart.js.org/" target="_blank">flowchart.js</a>', dx: 0, dy: 0, textAnchor: 'middle'}, style: {shape: "rect", width: 100, height: 25, rx: 3, ry: 3, fillColor: '#2e7bcf', strokeColor: '#275da1'}},
+      {id: 'bigDiamond', label: {name: 'You can avoid using a big diamond\nfor long sentence condition.', color: '#fff', dx: 0, dy: 5, textAnchor: 'middle'}, style: {shape: "rect", width: 230, height: 50, rx: 3, ry: 3, fillColor: '#706CAA', strokeColor: '#7152aa'}},
+      {id: 'nodePosition', label: {name: 'You can put nodes to in a position you like.', color: '#fff', dx: 0, dy: 0, textAnchor: 'middle'}, style: {shape: "rect", width: 280, height: 25, rx: 3, ry: 3, fillColor: '#706CAA', strokeColor: '#7152aa'}},
+      {id: 'decorate', label: {name: 'You can decorate nodes and links.', color: '#fff', dx: 0, dy: 0, textAnchor: 'middle'}, style: {shape: "rect", width: 230, height: 25, rx: 3, ry: 3, fillColor: '#706CAA', strokeColor: '#7152aa'}},
+      {id: 'module', label: {name: 'You can use as "npm" module.', color: '#fff', dx: 0, dy: 0, textAnchor: 'middle'}, style: {shape: "rect", width: 210, height: 25, rx: 3, ry: 3, fillColor: '#706CAA', strokeColor: '#7152aa'}},
+      {id: 'maintenance', label: {name: 'It is not difficult to maintain the chart.', color: '#fff', dx: 0, dy: 0, textAnchor: 'middle'}, style: {shape: "rect", width: 240, height: 25, rx: 3, ry: 3, fillColor: '#706CAA', strokeColor: '#7152aa'}},
+      {id: 'd3', label: {name: 'You do not want to depends on "d3.js" ?', color: '#afafaf'}, style: {fillColor: '#afafaf', strokeColor: '#afafaf'}},
+      {id: 'dummyNode1', label: {name: ''}, style: {shape: 'nothing', strokeWidth: 0, width:0, height:0}},
+      {id: 'dummyNode2', label: {name: ''}, style: {shape: 'nothing', strokeWidth: 0, width:0, height:0}},
+      {id: 'flowcharty', label: {name: 'flowcharty', fontSize: '20px', color: '#fff', dx: 0, dy: 0, textAnchor: 'middle'}, style: {shape: "rect", width: 150, height: 40, rx: 3, ry: 3, fillColor: '#cf634b', strokeColor: '#a7533e'}},
+    ],
+    map: [
+      ['', 'start'],
+      ['', 'manually', 'drawIo'],
+      ['', 'formal'],
+      ['', 'bigDiamond', '', 'dummyNode1'],
+      ['', 'nodePosition', '', 'anotherChart'],
+      ['', 'decorate', 'dummyNode2'],
+      ['', 'module'],
+      ['', 'maintenance'],
+      ['', 'd3'],
+      ['', 'flowcharty', '', 'flowchartJS', 'mermaid'],
+    ],
+    links: [
+      {source: 'start', target: 'manually'},
+      {source: 'manually', target: 'drawIo', label: {name: 'yes'}},
+      {source: 'manually', target: 'formal', label: {name: 'no'}},
+      {source: 'formal', target: 'anotherChart', label: {name: 'yes'}},
+      {source: 'anotherChart', target: 'flowchartJS', label: {name: 'no'}},
+      {source: 'anotherChart', target: 'mermaid', label: {name: 'yes'}},
+      {source: 'formal', target: 'bigDiamond', label: {name: 'no'}},
+      {source: 'bigDiamond', target: 'nodePosition'},
+      {source: 'nodePosition', target: 'decorate'},
+      {source: 'decorate', target: 'module'},
+      {source: 'module', target: 'maintenance'},
+      {source: 'maintenance', target: 'd3'},
+      {source: 'd3', target: 'dummyNode2', label: {name: 'yes'}, style: {headType: 'none', curveType: 'stepAfter', color: '#afafaf'}},
+      {source: 'dummyNode2', target: 'dummyNode1', style: {color: '#afafaf', curveType: 'stepBefore'}},
+      {source: 'd3', target: 'flowcharty', label: {name: 'no'}, style: {strokeWidth: 4, color: '#cf3933'}},
+    ]
+};
+var flowcharty = new Flowcharty.default();
+
+flowcharty.render(d3.select("svg"), data);
+
+style: {
+	shape: "circle", // "circle"|"rect"|"nothing"
+	width: 20,
+	height: 20,
+	rx: 5,
+	ry: 5,
+	strokeColor: "#000",
+	strokeWidth: 2,
+	fillColor: "#fff"
+  },
+  
+  label: {
+	dx: -10,
+	dy: -10,
+	textAnchor: "end", // "start"|"middle"|"end"
+	color: "#000",
+	fontSize: "12px",
+	fontFamily: "sans-serif"
+  }
+
+  style: {
+	connectionType: "direct", // "direct"|"marge"
+	curveType: "default", // "default"|"stepBefore"|"stepAfter"
+	color: "#000",
+	width: 2,
+	headType: "arrow", // "arrow"|"none"
+	arrowheadSize: 6
+  },
+  
+  label: {
+	dx: undefined,
+	dy: undefined,
+	textAnchor: undefined, // "start"|"middle"|"end"|undefined
+	color: "#000",
+	fontSize: "12px",
+	fontFamily: "sans-serif"
+  }
+
+  
 </body>
-</body>
+
 </html>
