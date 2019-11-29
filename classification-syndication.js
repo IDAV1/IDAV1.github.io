@@ -88,7 +88,7 @@ btkjQuery(function () {
         var syndicator = this;
 
         // Limit pager to 5 numbers
-        //btkjQuery.fn.DataTable.ext.pager.numbers_length = 5;
+        //btkjQuery.fn.DataTable.ext.pager.numbers_length = 6;
 
         // Set up the PDT data table
         var table = btkjQuery('#btk_classificationTable').DataTable({
