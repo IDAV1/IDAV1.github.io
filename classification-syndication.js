@@ -63,7 +63,7 @@ btkjQuery(function () {
     // Loads the index html and passes it to the success callback
     BTKUniclassSyndicator.prototype.loadIndexHtml = function (success) {
         var self = this;
-        var html = '<table id=\'btk_classificationTable\'><thead><tr><th>Code</th><th>Title</th></tr></thead><tbody>';
+        var html = '<table id=\'btk_classificationTable\'><thead><tr><th class="text-left">Code</th><th class="text-left">Title</th></tr></thead><tbody>';
         html += '</tbody></table>';
         success(self.applyTemplate(html));
     };
