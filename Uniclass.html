@@ -1,0 +1,29 @@
+<!-- Syndication code starts here -->
+
+<!-- Include required JavaScript files -->
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/responsive/2.0.1/js/dataTables.responsive.min.js"></script>
+<script id="btk_syndication-script" src="https://toolkit.thenbs.com/scripts/classification-syndication.js"></script>
+<!--[if lte IE 9]>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js'></script>
+<![endif]-->
+
+<!-- Include required CSS files -->
+<link href="https://toolkit.thenbs.com/content/css/classification-syndication.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+<link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" />
+<link href="//cdn.datatables.net/responsive/2.0.1/css/responsive.dataTables.min.css" type="text/css" rel="stylesheet" />
+
+<!-- Include required HTML -->
+<div id="btk_classifications">
+    <p>Loading Uniclass2015...</p>
+</div>
+
+<script>
+    btkjQuery(function () {
+        btkjQuery('#btk_classifications').showClassifications();
+    });
+</script>
+
+<!-- Syndication code ends -->
