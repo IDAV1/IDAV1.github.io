@@ -94,7 +94,7 @@ btkjQuery(function () {
         var table = btkjQuery('#btk_classificationTable').DataTable({
             'dom': 'f<"toolbar">rtp',
             // Feature control
-            "paging": true,
+            "paging": false,
             "searching": true,
             "info": true,
             "scrollY": "1500px",
