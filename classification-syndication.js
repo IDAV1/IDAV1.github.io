@@ -97,8 +97,8 @@ btkjQuery(function () {
             "paging": false,
             "searching": true,
             "info": true,
-            "scrollY": "1500px",
-            "scrollCollapse": true,
+            "scrollY": "800px",
+            "scrollCollapse": false,
             "ajax": this.apiHostname + '/api/classificationsyndication',
             // Configure datatables responsive plugin to remove columns
             "responsive": {
